@@ -1,0 +1,10 @@
+.wrapper {
+  margin: 10px;
+  width: 500px;
+  color: #313239;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
