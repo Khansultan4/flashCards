@@ -1,30 +1,61 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
-import TaskForm from '../../components/TaskForm/TaskForm';
-import TaskList from '../../components/TaskList/TaskList';
+'use client'
+import { useState } from "react";
+import {
+  CardBody,
+  Stack,
+  Divider,
+  CardFooter,
+  Heading,
+  Text,
+  Button,
+  Image,
+  Card,
+  ButtonGroup,
+  Input
+} from '@chakra-ui/react'
 
-export default function TasksPage() {
-  const [tasks, setTasks] = useState([]);
+export default function CardsPage({ title, question, image }) {
+  const initialState = { answer:''};
+  const [inputs, setInputs] = useState(initialState);
 
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      console.log(window.pageYOffset);
-    });
-    //? 1. (async () => {})()
-    //! 2. fetch().then()
-    //* 3. async function getData {}
-    //*   getData()
+  const changeHandler = (event) => {
+    setInputs((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
 
-    fetch(`${import.meta.env.VITE_FETCH}`)
-      .then((res) => res.json())
-      .then((data) => setTasks(data));
-  }, []);
+  const submitHandler = (event) => {
+    event.preventDefault();
+    setExercises((prev) => [...prev, inputs]);
+    setInputs(initialState);
+  };
 
   return (
-    <div>
-      <TaskForm setTasks={setTasks} />
-      <TaskList tasks={tasks} setTasks={setTasks} />
-    </div>
+    <Card maxW='sm'>
+  <CardBody>
+    <Image
+      src={image}
+      alt='theme image'
+      borderRadius='lg'
+    />
+    <Stack mt='6' spacing='3'>
+      <Heading color='black' size='md'>{title}тема</Heading>
+      <Text color='black'>
+        {question} вопрос
+      </Text>
+    </Stack>
+  </CardBody>
+  <Divider />
+  <CardFooter>
+    <ButtonGroup spacing='2'>
+    <Input onChange={changeHandler} name={'answer'} text={"ответ"} placeholder={"Введите ответ"} gridArea={"answer"} />
+      <Button onClick={submitHandler} padding={7} variant='ghost' colorScheme='blue'>
+        Ответить
+      </Button>
+    </ButtonGroup>
+  </CardFooter>
+</Card>
   );
 }
 
