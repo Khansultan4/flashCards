@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <div className='header'>
       <Link to='/'>Главная</Link>
-      <Link to='/tasks'>Задачи</Link>
+      <Link to='/cards'>Карты</Link>
     </div>
   );
 }
