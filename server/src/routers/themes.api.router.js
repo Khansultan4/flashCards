@@ -18,7 +18,7 @@ router
   .get('/:id', async (req, res) => {
     try {
       const { id } = req.params;
-      const theme = await Card.findAll({where: {theme_Id: id}, include: {model: Theme}});
+      const theme = await Card.findAll({where: {themeId: id}, include: {model: Theme}});
       res.json(theme);
     } catch (error) {
       console.error(error);
