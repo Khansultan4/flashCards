@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Theme.init({
     title: DataTypes.STRING,
-    imege: DataTypes.STRING
+    image: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Theme',

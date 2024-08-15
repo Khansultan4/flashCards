@@ -7,22 +7,22 @@ module.exports = {
       'Users',
       [
         {
-          name: 'Andrey',
+          username: 'Andrey',
           email: 'Andrey@k.ru',
           password: '123',
         },
         {
-          name: 'Sultan',
+          username: 'Sultan',
           email: 'Sultan@k.ru',
           password: '123',
         },
         {
-          name: 'Pavel',
+          username: 'Pavel',
           email: 'Pavel@k.ru',
           password: '123',
         },
         {
-          name: 'Sergey',
+          username: 'Sergey',
           email: 'Sergey@k.ru',
           password: '123',
         },
