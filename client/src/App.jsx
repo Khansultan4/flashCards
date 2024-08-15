@@ -31,7 +31,7 @@ function App() {
           element: <HomePage />,
         },
         {
-          path: '/tasks',
+          path: '/cards',
           element: <CardsPage />,
         },
         {
