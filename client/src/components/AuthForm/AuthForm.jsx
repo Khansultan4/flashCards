@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import Btn from '../../widgets/Btn/Btn';
 import axiosInstance, { setAccessToken } from '../../axiosInstance';
-import { Container, Stack, Flex, Box, Heading, Text, Image, Icon, useColorModeValue, InputGroup, InputLeftElement, Input, InputRightElement } from '@chakra-ui/react'
-import { PhoneIcon, CheckIcon } from '@chakra-ui/icons'
+import { Container, Stack, Flex, Box, Heading, Text, Icon, useColorModeValue, InputGroup, InputLeftElement, Input, InputRightElement, Button } from '@chakra-ui/react'
+import { EmailIcon, EditIcon, ViewIcon, ViewOffIcon, CheckIcon, AddIcon } from '@chakra-ui/icons'
 
 export default function AuthForm({ title, type, setUser }) {
   const [inputs, setInputs] = useState({});
@@ -39,6 +39,9 @@ export default function AuthForm({ title, type, setUser }) {
       </Icon>
     )
   }
+
+  const [show, setShow] = useState(false)
+  const handleClick = () => setShow(!show)
 
   return (
     <form onSubmit={submitHandler} className='form'>
@@ -78,11 +81,11 @@ export default function AuthForm({ title, type, setUser }) {
             position={'relative'}
             w={'full'}>
             <Blob
-              w={'150%'}
-              h={'150%'}
+              w={'130%'}
+              h={'130%'}
               position={'absolute'}
-              top={'10%'}
-              left={'-30%'}
+              top={'15%'}
+              left={'-13%'}
               // zIndex={-1}
               color={useColorModeValue('red.400', 'red.400')}
             />
@@ -99,66 +102,111 @@ export default function AuthForm({ title, type, setUser }) {
       </Container>
 
       {type === 'signin' && (<>
-          <input
-            onChange={changeHandler}
-            type='email'
-            name='email'
-            value={inputs?.email}
-            placeholder='Эл.почта'
-          />
-          <input
-            onChange={changeHandler}
-            type='password'
-            name='password'
-            value={inputs?.password}
-            placeholder='Пароль'
-          />
+        <Stack
+            spacing={0}
+            width={'30%'}
+            position={'absolute'}
+            top={'20%'}>
+            <InputGroup>
+              <InputLeftElement pointerEvents='none'>
+                <EmailIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>
+              </InputLeftElement>
+              <Input
+                type='email'
+                placeholder='Эл.почта'
+                onChange={changeHandler}
+                name='email'
+                value={inputs?.email}
+                />
+            </InputGroup>
+            <InputGroup size='md'>
+              <InputLeftElement pointerEvents='none'>
+                {show ? <ViewIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/> : <ViewOffIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>}
+              </InputLeftElement>
+              <Input
+                pr='4.5rem'
+                type={show ? 'text' : 'password'}
+                placeholder='Пароль'
+                onChange={changeHandler}
+                name='password'
+                value={inputs?.password}
+              />
+              <InputRightElement width='4.5rem'>
+                <Button h='1.75rem' size='sm' onClick={handleClick} top={'40%'} right={'15px'} position='absolute'>
+                  {show ? 'Hide' : 'Show'}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </Stack>
         </>
       )}
-      <Stack spacing={4}>
-        <InputGroup>
-          <InputLeftElement pointerEvents='none'>
-            <PhoneIcon color='gray.300' />
-          </InputLeftElement>
-          <Input type='tel' placeholder='Phone number' />
-        </InputGroup>
-
-        <InputGroup>
-          <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em'>
-            $
-          </InputLeftElement>
-          <Input placeholder='Enter amount' />
-          <InputRightElement>
-            <CheckIcon color='green.500' />
-          </InputRightElement>
-        </InputGroup>
-      </Stack>
+      
       {type === 'signup' && (
         <>
-          <input
-            onChange={changeHandler}
-            name='username'
-            value={inputs?.username}
-            placeholder='Имя пользователя'
-          />
-          <input
-            onChange={changeHandler}
-            type='email'
-            name='email'
-            value={inputs?.email}
-            placeholder='Эл.почта'
-          />
-          <input
-            onChange={changeHandler}
-            type='password'
-            name='password'
-            value={inputs?.password}
-            placeholder='Пароль'
-          />
+          <Stack
+            spacing={0}
+            width={'30%'}
+            position={'absolute'}
+            top={'20%'}>
+            <InputGroup>
+              <InputLeftElement pointerEvents='none'>
+                <EditIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>
+              </InputLeftElement>
+              <Input
+                type='text'
+                placeholder='Имя пользователя'
+                onChange={changeHandler}
+                name='username'
+                value={inputs?.username}
+                />
+            </InputGroup>
+            <InputGroup>
+              <InputLeftElement pointerEvents='none'>
+                <EmailIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>
+              </InputLeftElement>
+              <Input
+                type='email'
+                placeholder='Эл.почта'
+                onChange={changeHandler}
+                name='email'
+                value={inputs?.email}
+                />
+            </InputGroup>
+            <InputGroup size='md'>
+              <InputLeftElement pointerEvents='none'>
+                {show ? <ViewIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/> : <ViewOffIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>}
+              </InputLeftElement>
+              <Input
+                pr='4.5rem'
+                type={show ? 'text' : 'password'}
+                placeholder='Пароль'
+                onChange={changeHandler}
+                name='password'
+                value={inputs?.password}
+              />
+              <InputRightElement width='4.5rem'>
+                <Button h='1.75rem' size='sm' onClick={handleClick} top={'40%'} right={'15px'} position='absolute'>
+                  {show ? 'Hide' : 'Show'}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </Stack>
         </>
       )}
-      {type === 'signin' && <button color='#293990'>Вход</button> }
-      {type === 'signup' && <button color='#293990'>Регистрация</button>}
+      {type === 'signin' && (
+        <Stack direction='row' spacing={4} position={'absolute'} top={'50%'} left={'0.5%'}>
+          <Button leftIcon={<CheckIcon />} colorScheme='teal' variant='solid'>
+            Вход
+          </Button>
+        </Stack>
+      )}
+      {type === 'signup' && (
+        <Stack direction='row' spacing={4} position={'absolute'} top={'60%'} left={'0.5%'}>
+          <Button leftIcon={<AddIcon />} colorScheme='teal' variant='solid'>
+            Регистрация
+          </Button>
+        </Stack>
+      )}
     </form>
   );
 }
