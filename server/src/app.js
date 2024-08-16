@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(process.cwd(), 'public')))
 
-app.use('/api/v1', apiRouter);
+app.use('/api/', apiRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started at ${PORT} port`);

@@ -13,7 +13,7 @@ export default function AuthForm({ title, type, setUser }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await axiosInstance.post(`/auth/${type}`, inputs);
+    const response = await axiosInstance.post(`api/auth/${type}`, inputs);
     setUser(response.data.user);
     setAccessToken(response.data.accessToken);
     navigate('/');
@@ -64,8 +64,8 @@ export default function AuthForm({ title, type, setUser }) {
           />
         </>
       )}
-      {type === 'signin' && <button text='Вход' color='#293990'></button> }
-      {type === 'signup' && <button text='Регистрация' color='#293990'></button>}
+      {type === 'signin' && <button text='Вход' color='#293990'>Вход</button> }
+      {type === 'signup' && <button text='Регистрация' color='#293990'>Регистрация</button>}
     </form>
   );
 }
