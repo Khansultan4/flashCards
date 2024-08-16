@@ -1,5 +1,6 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   CardBody,
   Stack,
@@ -11,13 +12,19 @@ import {
   Image,
   Card,
   ButtonGroup,
-  Input
+  Input,
 } from '@chakra-ui/react'
+import axiosInstance from '../../axiosInstance';
 
-export default function CardsPage({ title, question, image, answer }) {
+
+export default function CardsPage({ topicID, title, question, image, answer }) {
   const initialState = { answer:''};
   const [inputs, setInputs] = useState(initialState);
   const [feedback, setFeedback] = useState(''); 
+  const [count, setCount] = useState(0);
+  const [questions, setQuestions] = useState();
+  const {id} = useParams()
+  const [questionIndex, setquestionIndex] = useState(0); 
 
   const changeHandler = (event) => {
     setInputs((prev) => ({
@@ -25,14 +32,33 @@ export default function CardsPage({ title, question, image, answer }) {
       [event.target.name]: event.target.value,
     }));
   };
+  
+  useEffect(()=>{
+    axiosInstance
+      .get(`${import.meta.env.VITE_FETCH_APITEMS}/${id}`)
+      .then((res) =>{
+        console.log('dawwdwdw',res.data);
+        
+        setQuestions(res.data)
+      })
+  }, [])
+  // console.log(questions);
+console.log(questions?.[questionIndex]?.question);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (inputs.answer.trim().toLowerCase() === answer.toLowerCase()) {
-      setFeedback("Правильный ответ!");
+    if(questionIndex < questions.length){
+    if (inputs.answer.trim().toLowerCase() === questions?.[questionIndex]?.answer.toLowerCase()) {
+      setFeedback('Правильный ответ!');
+      setCount((prev)=> prev + 1)
+      setquestionIndex((prev)=> prev + 1)
     } else {
-      setFeedback("Неправильный ответ. Попробуйте еще раз.");
+      setFeedback('Неправильный ответ. Попробуйте еще раз.');
+      setquestionIndex((prev)=> prev + 1)
     }
+  }else{
+    setFeedback(`ВЫ НАБРАЛИ ${count} ОЧКОВ`)
+  }
     console.log(inputs); 
     setInputs(initialState);
   };
@@ -40,22 +66,21 @@ export default function CardsPage({ title, question, image, answer }) {
   return (
     <Card size ='lg' marginLeft={500} marginTop={50} width={550} height={550} >
   <CardBody>
-    <Image
-      src={image}
-      alt='theme image'
-      borderRadius='lg'
-    />
-    <Stack mt='6' spacing='3'>
-      <Heading color='black' size='lg'>{title}тема</Heading>
+    <Stack fontSize={18} mt='10' spacing='3'>
       <Text color='black'>
-        {question} вопрос
+        {questions?.[questionIndex]?.question}
       </Text>
     </Stack>
   </CardBody>
+  <Stack mt='6' paddingLeft={20} >
+    <Text color='black'>
+    {feedback}
+    </Text>
+    </Stack>
   <Divider />
   <CardFooter>
-    <ButtonGroup paddingLeft={10} spacing='3'>
-    <Input onChange={changeHandler} name={'answer'}  placeholder={"Введите ответ"} gridArea={"answer"} type='text' />
+    <ButtonGroup paddingLeft={25} spacing='4'>
+    <Input onChange={changeHandler} value={inputs.answer} name={'answer'}  placeholder={"Введите ответ"} gridArea={"answer"} type='text' />
       <Button onClick={submitHandler} padding={7} variant='ghost' colorScheme='blue' type='submit'>
         Ответить
       </Button>
