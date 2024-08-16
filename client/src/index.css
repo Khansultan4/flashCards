@@ -74,10 +74,20 @@ input {
 .header {
   position: relative;
   width: 100%;
-  height: 40px;
-  margin-bottom: 60px;
+  /* height: 40px;
+  margin-bottom: 60px; */
   background-color: #1E1F23;
-  padding-left: 80%;
+  /* padding-left: 80%; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-left-group {
+  align-self: flex-start;
+}
+
+.header-right-group {
+  align-self: flex-end;
 }
 
 a {

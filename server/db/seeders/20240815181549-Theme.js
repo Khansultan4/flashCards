@@ -8,12 +8,12 @@ module.exports = {
       [
         {
           title: 'Космос',
-          image: 'https://vladivostok.mir-kvestov.ru/uploads/quests/2743/original/kvestkafe_kosmos_photo1.jpg?1692627455',
+          image: 'https://c4.wallpaperflare.com/wallpaper/899/936/977/3-316-16-9-aspect-ratio-s-sfw-wallpaper-preview.jpg',
          
         },
         {
           title: 'География',
-          image: 'https://petrsu.ru/files/news_notice_event/2021/8/17/thumbnails/970_1629274047_unnamed-1.jpg',
+          image: 'https://images.wallpaperscraft.com/image/single/globe_country_ball_94625_1600x900.jpg',
          
         },
       ],
