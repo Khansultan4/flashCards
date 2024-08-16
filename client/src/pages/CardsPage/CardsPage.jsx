@@ -14,9 +14,10 @@ import {
   Input
 } from '@chakra-ui/react'
 
-export default function CardsPage({ title, question, image }) {
+export default function CardsPage({ title, question, image, answer }) {
   const initialState = { answer:''};
   const [inputs, setInputs] = useState(initialState);
+  const [feedback, setFeedback] = useState(''); 
 
   const changeHandler = (event) => {
     setInputs((prev) => ({
@@ -27,12 +28,17 @@ export default function CardsPage({ title, question, image }) {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    setExercises((prev) => [...prev, inputs]);
+    if (inputs.answer.trim().toLowerCase() === answer.toLowerCase()) {
+      setFeedback("Правильный ответ!");
+    } else {
+      setFeedback("Неправильный ответ. Попробуйте еще раз.");
+    }
+    console.log(inputs); 
     setInputs(initialState);
   };
 
   return (
-    <Card maxW='sm'>
+    <Card size ='lg' marginLeft={500} marginTop={50} width={550} height={550} >
   <CardBody>
     <Image
       src={image}
@@ -40,7 +46,7 @@ export default function CardsPage({ title, question, image }) {
       borderRadius='lg'
     />
     <Stack mt='6' spacing='3'>
-      <Heading color='black' size='md'>{title}тема</Heading>
+      <Heading color='black' size='lg'>{title}тема</Heading>
       <Text color='black'>
         {question} вопрос
       </Text>
@@ -48,9 +54,9 @@ export default function CardsPage({ title, question, image }) {
   </CardBody>
   <Divider />
   <CardFooter>
-    <ButtonGroup spacing='2'>
-    <Input onChange={changeHandler} name={'answer'} text={"ответ"} placeholder={"Введите ответ"} gridArea={"answer"} />
-      <Button onClick={submitHandler} padding={7} variant='ghost' colorScheme='blue'>
+    <ButtonGroup paddingLeft={10} spacing='3'>
+    <Input onChange={changeHandler} name={'answer'}  placeholder={"Введите ответ"} gridArea={"answer"} type='text' />
+      <Button onClick={submitHandler} padding={7} variant='ghost' colorScheme='blue' type='submit'>
         Ответить
       </Button>
     </ButtonGroup>
