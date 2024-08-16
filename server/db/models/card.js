@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Card.init({
-    question: DataTypes.STRING,
+    question: DataTypes.TEXT,
     answer: DataTypes.STRING,
     themeId: DataTypes.INTEGER
   }, {
