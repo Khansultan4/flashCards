@@ -21,7 +21,7 @@ export default function AuthForm({ title, type, setUser }) {
     setAccessToken(response.data.accessToken);
     navigate('/');
   };
-
+console.log(inputs);
   const Blob = (props) => {
     return (
       <Icon
@@ -51,12 +51,14 @@ export default function AuthForm({ title, type, setUser }) {
           align={'start'}
           // spacing={{ base: 8, md: 10 }}
           // py={{ base: 10, md: 14 }}
-          direction={{ base: 'column', md: 'row' }}>
+          direction={{ base: 'column', md: 'row' }}
+        >
           <Stack flex={1}>
             <Heading
               // lineHeight={1.1}
               fontWeight={600}
-              fontSize={{ lg: '5xl' }}>
+              fontSize={{ lg: '5xl' }}
+            >
               <Text
                 as={'span'}
                 position={'relative'}
@@ -69,7 +71,8 @@ export default function AuthForm({ title, type, setUser }) {
                   left: 0,
                   bg: 'red.400',
                   zIndex: -1,
-                }}>
+                }}
+              >
                 {title}
               </Text>
             </Heading>
@@ -79,7 +82,8 @@ export default function AuthForm({ title, type, setUser }) {
             justify={'center'}
             align={'center'}
             position={'relative'}
-            w={'full'}>
+            w={'full'}
+          >
             <Blob
               w={'130%'}
               h={'130%'}
@@ -95,21 +99,23 @@ export default function AuthForm({ title, type, setUser }) {
               rounded={'2xl'}
               // boxShadow={'2xl'}
               width={'full'}
-              overflow={'hidden'}>
-            </Box>
+              overflow={'hidden'}
+            ></Box>
           </Flex>
         </Stack>
       </Container>
 
-      {type === 'signin' && (<>
-        <Stack
-            spacing={0}
-            width={'30%'}
-            position={'absolute'}
-            top={'20%'}>
+      {type === 'signin' && (
+        <>
+          <Stack spacing={0} width={'30%'} position={'absolute'} top={'20%'}>
             <InputGroup>
               <InputLeftElement pointerEvents='none'>
-                <EmailIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>
+                <EmailIcon
+                  color='gray.300'
+                  top={'55%'}
+                  left={'20px'}
+                  position='absolute'
+                />
               </InputLeftElement>
               <Input
                 type='email'
@@ -117,11 +123,25 @@ export default function AuthForm({ title, type, setUser }) {
                 onChange={changeHandler}
                 name='email'
                 value={inputs?.email}
-                />
+              />
             </InputGroup>
             <InputGroup size='md'>
               <InputLeftElement pointerEvents='none'>
-                {show ? <ViewIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/> : <ViewOffIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>}
+                {show ? (
+                  <ViewIcon
+                    color='gray.300'
+                    top={'55%'}
+                    left={'20px'}
+                    position='absolute'
+                  />
+                ) : (
+                  <ViewOffIcon
+                    color='gray.300'
+                    top={'55%'}
+                    left={'20px'}
+                    position='absolute'
+                  />
+                )}
               </InputLeftElement>
               <Input
                 pr='4.5rem'
@@ -132,7 +152,14 @@ export default function AuthForm({ title, type, setUser }) {
                 value={inputs?.password}
               />
               <InputRightElement width='4.5rem'>
-                <Button h='1.75rem' size='sm' onClick={handleClick} top={'40%'} right={'15px'} position='absolute'>
+                <Button
+                  h='1.75rem'
+                  size='sm'
+                  onClick={handleClick}
+                  top={'40%'}
+                  right={'15px'}
+                  position='absolute'
+                >
                   {show ? 'Hide' : 'Show'}
                 </Button>
               </InputRightElement>
@@ -140,17 +167,18 @@ export default function AuthForm({ title, type, setUser }) {
           </Stack>
         </>
       )}
-      
+
       {type === 'signup' && (
         <>
-          <Stack
-            spacing={0}
-            width={'30%'}
-            position={'absolute'}
-            top={'20%'}>
+          <Stack spacing={0} width={'30%'} position={'absolute'} top={'20%'}>
             <InputGroup>
               <InputLeftElement pointerEvents='none'>
-                <EditIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>
+                <EditIcon
+                  color='gray.300'
+                  top={'55%'}
+                  left={'20px'}
+                  position='absolute'
+                />
               </InputLeftElement>
               <Input
                 type='text'
@@ -158,11 +186,16 @@ export default function AuthForm({ title, type, setUser }) {
                 onChange={changeHandler}
                 name='username'
                 value={inputs?.username}
-                />
+              />
             </InputGroup>
             <InputGroup>
               <InputLeftElement pointerEvents='none'>
-                <EmailIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>
+                <EmailIcon
+                  color='gray.300'
+                  top={'55%'}
+                  left={'20px'}
+                  position='absolute'
+                />
               </InputLeftElement>
               <Input
                 type='email'
@@ -170,11 +203,25 @@ export default function AuthForm({ title, type, setUser }) {
                 onChange={changeHandler}
                 name='email'
                 value={inputs?.email}
-                />
+              />
             </InputGroup>
             <InputGroup size='md'>
               <InputLeftElement pointerEvents='none'>
-                {show ? <ViewIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/> : <ViewOffIcon color='gray.300' top={'55%'} left={'20px'} position='absolute'/>}
+                {show ? (
+                  <ViewIcon
+                    color='gray.300'
+                    top={'55%'}
+                    left={'20px'}
+                    position='absolute'
+                  />
+                ) : (
+                  <ViewOffIcon
+                    color='gray.300'
+                    top={'55%'}
+                    left={'20px'}
+                    position='absolute'
+                  />
+                )}
               </InputLeftElement>
               <Input
                 pr='4.5rem'
@@ -185,7 +232,14 @@ export default function AuthForm({ title, type, setUser }) {
                 value={inputs?.password}
               />
               <InputRightElement width='4.5rem'>
-                <Button h='1.75rem' size='sm' onClick={handleClick} top={'40%'} right={'15px'} position='absolute'>
+                <Button
+                  h='1.75rem'
+                  size='sm'
+                  onClick={handleClick}
+                  top={'40%'}
+                  right={'15px'}
+                  position='absolute'
+                >
                   {show ? 'Hide' : 'Show'}
                 </Button>
               </InputRightElement>
@@ -194,15 +248,37 @@ export default function AuthForm({ title, type, setUser }) {
         </>
       )}
       {type === 'signin' && (
-        <Stack direction='row' spacing={4} position={'absolute'} top={'50%'} left={'0.5%'}>
-          <Button leftIcon={<CheckIcon />} colorScheme='teal' variant='solid'>
+        <Stack
+          direction='row'
+          spacing={4}
+          position={'absolute'}
+          top={'50%'}
+          left={'0.5%'}
+        >
+          <Button
+            onClick={submitHandler}
+            leftIcon={<CheckIcon />}
+            colorScheme='teal'
+            variant='solid'
+          >
             Вход
           </Button>
         </Stack>
       )}
       {type === 'signup' && (
-        <Stack direction='row' spacing={4} position={'absolute'} top={'60%'} left={'0.5%'}>
-          <Button leftIcon={<AddIcon />} colorScheme='teal' variant='solid'>
+        <Stack
+          direction='row'
+          spacing={4}
+          position={'absolute'}
+          top={'60%'}
+          left={'0.5%'}
+        >
+          <Button
+            onClick={submitHandler}
+            leftIcon={<AddIcon />}
+            colorScheme='teal'
+            variant='solid'
+          >
             Регистрация
           </Button>
         </Stack>

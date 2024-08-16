@@ -90,6 +90,7 @@ export default function HomePage() {
             <TabPanels>
               {themes?.map(topic => (
                 <TabPanel key={topic.id}>
+                
                   <Link to='/cards' topicID = {topic.id}>
                     <Image
                         alt={`Tab ${topic.id} Image`}
