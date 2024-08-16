@@ -8,9 +8,8 @@ import axiosInstance, { setAccessToken } from './axiosInstance';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(false);
-
 
 
   useEffect(() => {
@@ -24,7 +23,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Root />,
+      element: <Root user={user} setUser={setUser} isLoading={isLoading}/>,
       children: [
         {
           path: '/',
