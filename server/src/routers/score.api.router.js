@@ -18,7 +18,7 @@ router
   .post('/', async (req, res) => {
     const {data} = req.body
     try {
-      const score = await Score.create({rating: data.rating, user_Id: res.locals.user.id, theme_Id: data.themeId});
+      const score = await Score.create({rating: data.rating, userId: res.locals.user.id, themeId: data.themeId});
       res.json(score);
     } catch (error) {
       console.error(error);

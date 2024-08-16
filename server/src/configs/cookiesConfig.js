@@ -2,11 +2,11 @@ const jwtConfig = require('./jwtConfig');
 
 module.exports = {
   access: {
-    maxAge: jwtConfig.access.expireIn,
     httpOnly: true,
+    maxAge: jwtConfig.access.expiresIn,
   },
   refresh: {
-    maxAge: jwtConfig.refresh.expireIn,
     httpOnly: true,
+    maxAge: jwtConfig.refresh.expiresIn,
   },
 };
