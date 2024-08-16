@@ -2,6 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 import {
   Container,
@@ -26,8 +27,26 @@ import {
   TabPanel
 } from '@chakra-ui/react'
 
+
 export default function HomePage() {  
-  const response = [  // сделать axios.get
+  // const res = await axios.get()
+  const getThemes = async () => {
+    try {
+      //console.log(import.meta.env)      
+      const response = await axios.get(`${import.meta.env.VITE_FETCH_APITEMS}`)
+      return response.data
+    } catch (err) {
+      console.error(err.toJSON())
+    }
+  }
+  console.log(getThemes());
+  
+  // let themes
+  // useEffect(()=>{
+  //   themes = getThemes()
+  // }, [])
+  // const response = await getThemes()
+  const themes = [
     {
       id: 1,
       title: 'Космос',
@@ -42,14 +61,14 @@ export default function HomePage() {
     },
     {
       id: 3,
-      title: 'Космос',
-      image: 'https://c4.wallpaperflare.com/wallpaper/899/936/977/3-316-16-9-aspect-ratio-s-sfw-wallpaper-preview.jpg',
+      title: 'Авто',
+      image: 'https://img.uhdpaper.com/wallpaper/sports-car-digital-art-755@1@l-preview.jpg',
      
     },
     {
       id: 4,
-      title: 'География',
-      image: 'https://images.wallpaperscraft.com/image/single/globe_country_ball_94625_1600x900.jpg',
+      title: 'Реакт',
+      image: 'https://wallpapersmug.com/download/1600x900/acd20d/reactjs-atom-minimal.jpg',
      
     },
   ]
@@ -94,12 +113,12 @@ export default function HomePage() {
           <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
             <Tabs variant='soft-rounded' colorScheme='red'>
             <TabList justifyContent={'space-around'}>
-              {response.map(topic => (
-                <Tab key={topic.id} bg={'red.400'} ps={13-Math.floor(topic.title.length/2)} pe={13-Math.floor(topic.title.length/2)}>{topic.title}</Tab>
+              {themes.map(topic => (
+                <Tab key={topic.id} bg={'red.400'} ps={`${70-Math.floor(topic.title.length/2)*10}px`} pe={`${70-Math.floor(topic.title.length/2)*10}px`}>{topic.title}</Tab>
               ))}
             </TabList>
             <TabPanels>
-              {response.map(topic => (
+              {themes.map(topic => (
                 <TabPanel key={topic.id}>
                   <Link to='/cards' topicID = {topic.id}>
                     <Image
@@ -109,8 +128,18 @@ export default function HomePage() {
                         w={'100%'}
                         h={'100%'}
                         src={`${topic.image}`}
-                      />
-                    </Link>
+                    />
+                    <Text
+                      fontSize={{ lg: '6xl' }}
+                      align={'center'}
+                      top={'70%'}
+                      left={'18%'}
+                      color={'yellow.400'}
+                      textShadow={'red 2px 2px'}
+                      position={'absolute'}>
+                        НАЧАТЬ ИГРУ
+                    </Text>
+                  </Link>
                 </TabPanel>
               ))}
             </TabPanels>

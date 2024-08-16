@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import Btn from '../../widgets/Btn/Btn';
 import axiosInstance, { setAccessToken } from '../../axiosInstance';
-import { Container, Stack, Flex, Box, Heading, Text, Image, Icon, useColorModeValue } from '@chakra-ui/react'
+import { Container, Stack, Flex, Box, Heading, Text, Image, Icon, useColorModeValue, InputGroup, InputLeftElement, Input, InputRightElement } from '@chakra-ui/react'
+import { PhoneIcon, CheckIcon } from '@chakra-ui/icons'
 
 export default function AuthForm({ title, type, setUser }) {
   const [inputs, setInputs] = useState({});
@@ -113,6 +114,24 @@ export default function AuthForm({ title, type, setUser }) {
           />
         </>
       )}
+      <Stack spacing={4}>
+        <InputGroup>
+          <InputLeftElement pointerEvents='none'>
+            <PhoneIcon color='gray.300' />
+          </InputLeftElement>
+          <Input type='tel' placeholder='Phone number' />
+        </InputGroup>
+
+        <InputGroup>
+          <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em'>
+            $
+          </InputLeftElement>
+          <Input placeholder='Enter amount' />
+          <InputRightElement>
+            <CheckIcon color='green.500' />
+          </InputRightElement>
+        </InputGroup>
+      </Stack>
       {type === 'signup' && (
         <>
           <input

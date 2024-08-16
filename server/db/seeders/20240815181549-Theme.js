@@ -16,6 +16,16 @@ module.exports = {
           image: 'https://images.wallpaperscraft.com/image/single/globe_country_ball_94625_1600x900.jpg',
          
         },
+        {
+          title: 'Авто',
+          image: 'https://img.uhdpaper.com/wallpaper/sports-car-digital-art-755@1@l-preview.jpg',
+         
+        },
+        {
+          title: 'Реакт',
+          image: 'https://wallpapersmug.com/download/1600x900/acd20d/reactjs-atom-minimal.jpg',
+         
+        },
       ],
       {}
     );
