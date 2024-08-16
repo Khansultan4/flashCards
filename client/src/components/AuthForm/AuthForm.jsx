@@ -2,13 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import Btn from '../../widgets/Btn/Btn';
 import axiosInstance, { setAccessToken } from '../../axiosInstance';
-<<<<<<< HEAD
 import { Container, Stack, Flex, Box, Heading, Text, Icon, useColorModeValue, InputGroup, InputLeftElement, Input, InputRightElement, Button } from '@chakra-ui/react'
 import { EmailIcon, EditIcon, ViewIcon, ViewOffIcon, CheckIcon, AddIcon } from '@chakra-ui/icons'
-=======
-import { Container, Stack, Flex, Box, Heading, Text, Image, Icon, useColorModeValue, InputGroup, InputLeftElement, Input, InputRightElement } from '@chakra-ui/react'
-import { PhoneIcon, CheckIcon, EmailIcon } from '@chakra-ui/icons'
->>>>>>> server3
 
 export default function AuthForm({ title, type, setUser }) {
   const [inputs, setInputs] = useState({});
@@ -53,23 +48,15 @@ export default function AuthForm({ title, type, setUser }) {
       {/* <h3>{title}</h3> */}
       <Container maxW={'1x1'}>
         <Stack
-        position= {'absolute'}
-        left= {'33%'}
-        top= {'40%'}
-       
-        width= {'40px'}
-        margin= {'0 auto'}
           align={'start'}
           // spacing={{ base: 8, md: 10 }}
           // py={{ base: 10, md: 14 }}
-          direction={{ base: 'column', md: 'row' }}
-        >
+          direction={{ base: 'column', md: 'row' }}>
           <Stack flex={1}>
             <Heading
               // lineHeight={1.1}
               fontWeight={600}
-              fontSize={{ lg: '5xl' }}
-            >
+              fontSize={{ lg: '5xl' }}>
               <Text
                 as={'span'}
                 position={'relative'}
@@ -82,8 +69,7 @@ export default function AuthForm({ title, type, setUser }) {
                   left: 0,
                   bg: 'red.400',
                   zIndex: -1,
-                }}
-              >
+                }}>
                 {title}
               </Text>
             </Heading>
@@ -93,8 +79,7 @@ export default function AuthForm({ title, type, setUser }) {
             justify={'center'}
             align={'center'}
             position={'relative'}
-            w={'full'}
-          >
+            w={'full'}>
             <Blob
               w={'130%'}
               h={'130%'}
@@ -110,13 +95,12 @@ export default function AuthForm({ title, type, setUser }) {
               rounded={'2xl'}
               // boxShadow={'2xl'}
               width={'full'}
-              overflow={'hidden'}
-            ></Box>
+              overflow={'hidden'}>
+            </Box>
           </Flex>
         </Stack>
       </Container>
 
-<<<<<<< HEAD
       {type === 'signin' && (<>
         <Stack
             spacing={0}
@@ -151,47 +135,11 @@ export default function AuthForm({ title, type, setUser }) {
                 <Button h='1.75rem' size='sm' onClick={handleClick} top={'40%'} right={'15px'} position='absolute'>
                   {show ? 'Hide' : 'Show'}
                 </Button>
-=======
-      {type === 'signin' && (
-        <>
-          <Stack spacing={2}>
-            <InputGroup>
-              <InputLeftElement pointerEvents='none'>
-              <EmailIcon color='gray.300' />
-              </InputLeftElement>
-              <Input
-                onChange={changeHandler}
-                type='email'
-                name='email'
-                value={inputs?.email}
-                placeholder='email'
-              />
-            </InputGroup>
-
-            <InputGroup>
-              <InputLeftElement
-                pointerEvents='none'
-                color='gray.300'
-                fontSize='1.2em'
-              >
-              
-              </InputLeftElement>
-              <Input
-                onChange={changeHandler}
-                type='password'
-                name='password'
-                value={inputs?.password}
-                placeholder='password'
-              />
-              <InputRightElement>
-                <CheckIcon color='green.500' />
->>>>>>> server3
               </InputRightElement>
             </InputGroup>
           </Stack>
         </>
       )}
-<<<<<<< HEAD
       
       {type === 'signup' && (
         <>
@@ -240,60 +188,11 @@ export default function AuthForm({ title, type, setUser }) {
                 <Button h='1.75rem' size='sm' onClick={handleClick} top={'40%'} right={'15px'} position='absolute'>
                   {show ? 'Hide' : 'Show'}
                 </Button>
-=======
-
-      {type === 'signup' && (
-        <>
-          <Stack spacing={1}>
-            <InputGroup>
-              <InputLeftElement pointerEvents='none'>
-                {/* <PhoneIcon color='gray.3' /> */}
-              </InputLeftElement>
-              <Input
-                onChange={changeHandler}
-                type='name'
-                name='username'
-                value={inputs?.email}
-                placeholder='name'
-              />
-            </InputGroup>
-            <InputGroup>
-              <InputLeftElement pointerEvents='none'>
-                <EmailIcon color='gray.300' />
-              </InputLeftElement>
-              <Input
-                onChange={changeHandler}
-                type='email'
-                name='email'
-                value={inputs?.email}
-                placeholder='email'
-              />
-            </InputGroup>
-
-            <InputGroup>
-              <InputLeftElement
-                pointerEvents='none'
-                color='gray.300'
-                fontSize='2em'
-              >
-                *
-              </InputLeftElement>
-              <Input
-                onChange={changeHandler}
-                type='password'
-                name='password'
-                value={inputs?.password}
-                placeholder='password'
-              />
-              <InputRightElement>
-                <CheckIcon color='green.500' />
->>>>>>> server3
               </InputRightElement>
             </InputGroup>
           </Stack>
         </>
       )}
-<<<<<<< HEAD
       {type === 'signin' && (
         <Stack direction='row' spacing={4} position={'absolute'} top={'50%'} left={'0.5%'}>
           <Button leftIcon={<CheckIcon />} colorScheme='teal' variant='solid'>
@@ -308,10 +207,6 @@ export default function AuthForm({ title, type, setUser }) {
           </Button>
         </Stack>
       )}
-=======
-      {type === 'signin' && <button color='#293990'>Вход</button>}
-      {type === 'signup' && <button color='#293990'>Регистрация</button>}
->>>>>>> server3
     </form>
   );
 }
