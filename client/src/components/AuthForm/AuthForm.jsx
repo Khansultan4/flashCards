@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import Btn from '../../widgets/Btn/Btn';
+import style from './AuthForm.module.css';
 import axiosInstance, { setAccessToken } from '../../axiosInstance';
 import { Container, Stack, Flex, Box, Heading, Text, Image, Icon, useColorModeValue } from '@chakra-ui/react'
 
@@ -15,6 +15,7 @@ export default function AuthForm({ title, type, setUser }) {
   const submitHandler = async (e) => {
     e.preventDefault();
     const response = await axiosInstance.post(`api/auth/${type}`, inputs);
+
     setUser(response.data.user);
     setAccessToken(response.data.accessToken);
     navigate('/');
@@ -137,8 +138,11 @@ export default function AuthForm({ title, type, setUser }) {
           />
         </>
       )}
+
       {type === 'signin' && <button color='#293990'>Вход</button> }
       {type === 'signup' && <button color='#293990'>Регистрация</button>}
+
+
     </form>
   );
 }
