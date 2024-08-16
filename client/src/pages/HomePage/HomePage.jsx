@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   Container,
@@ -26,52 +26,59 @@ import {
   Tab,
   TabPanel
 } from '@chakra-ui/react'
+import axiosInstance from '../../axiosInstance';
 
 
 export default function HomePage() {  
-  // const res = await axios.get()
-  const getThemes = async () => {
-    try {
-      //console.log(import.meta.env)      
-      const response = await axios.get(`${import.meta.env.VITE_FETCH_APITEMS}`)
-      return response.data
-    } catch (err) {
-      console.error(err.toJSON())
-    }
-  }
-  console.log(getThemes());
+  const [themes, setThemes] = useState()
+//   // const res = await axios.get()
+//   const getThemes = async () => {
+//     try {
+//       //console.log(import.meta.env)      
+//       const response = await axios.get(`${import.meta.env.VITE_FETCH_APITEMS}`)
+//       return response.data
+//     } catch (err) {
+//       console.error(err.toJSON())
+//     }
+//   }
+//   console.log(getThemes());
   
-  // let themes
-  // useEffect(()=>{
-  //   themes = getThemes()
-  // }, [])
-  // const response = await getThemes()
-  const themes = [
-    {
-      id: 1,
-      title: 'Космос',
-      image: 'https://c4.wallpaperflare.com/wallpaper/899/936/977/3-316-16-9-aspect-ratio-s-sfw-wallpaper-preview.jpg',
+
+  useEffect(()=>{
+    axiosInstance
+      .get(`${import.meta.env.VITE_FETCH_APITEMS}`)
+      .then((res) =>{
+        
+        setThemes(res.data)
+      })
+  }, [])
+  console.log(themes);
+  // const themes = [
+  //   {
+  //     id: 1,
+  //     title: 'Космос',
+  //     image: 'https://c4.wallpaperflare.com/wallpaper/899/936/977/3-316-16-9-aspect-ratio-s-sfw-wallpaper-preview.jpg',
      
-    },
-    {
-      id: 2,
-      title: 'География',
-      image: 'https://images.wallpaperscraft.com/image/single/globe_country_ball_94625_1600x900.jpg',
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'География',
+  //     image: 'https://images.wallpaperscraft.com/image/single/globe_country_ball_94625_1600x900.jpg',
      
-    },
-    {
-      id: 3,
-      title: 'Авто',
-      image: 'https://img.uhdpaper.com/wallpaper/sports-car-digital-art-755@1@l-preview.jpg',
+  //   },
+  //   {
+  //     id: 3,
+  //     title: 'Авто',
+  //     image: 'https://img.uhdpaper.com/wallpaper/sports-car-digital-art-755@1@l-preview.jpg',
      
-    },
-    {
-      id: 4,
-      title: 'Реакт',
-      image: 'https://wallpapersmug.com/download/1600x900/acd20d/reactjs-atom-minimal.jpg',
+  //   },
+  //   {
+  //     id: 4,
+  //     title: 'Реакт',
+  //     image: 'https://wallpapersmug.com/download/1600x900/acd20d/reactjs-atom-minimal.jpg',
      
-    },
-  ]
+  //   },
+  // ]
   
   return (
     <Container maxW={'7xl'}>
@@ -113,12 +120,12 @@ export default function HomePage() {
           <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
             <Tabs variant='soft-rounded' colorScheme='red'>
             <TabList justifyContent={'space-around'}>
-              {themes.map(topic => (
+              {themes?.map(topic => (
                 <Tab key={topic.id} bg={'red.400'} ps={`${70-Math.floor(topic.title.length/2)*10}px`} pe={`${70-Math.floor(topic.title.length/2)*10}px`}>{topic.title}</Tab>
               ))}
             </TabList>
             <TabPanels>
-              {themes.map(topic => (
+              {themes?.map(topic => (
                 <TabPanel key={topic.id}>
                   <Link to='/cards' topicID = {topic.id}>
                     <Image
