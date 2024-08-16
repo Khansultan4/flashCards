@@ -15,7 +15,8 @@ export default function AuthForm({ title, type, setUser }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await axiosInstance.post(`/auth/${type}`, inputs);
+    const response = await axiosInstance.post(`api/auth/${type}`, inputs);
+    console.log(response);
     setUser(response.data.user);
     setAccessToken(response.data.accessToken);
     navigate('/');
